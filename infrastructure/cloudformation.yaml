@@ -5,8 +5,7 @@ Resources:
         Properties:
             InstanceType: "ml.t2.medium"
             RoleArn: !GetAtt ExecutionRole.Arn
-            DefaultCodeRepository:
-                - https://github.com/cloudacademy/sagemaker-flight-delays.git
+            DefaultCodeRepository: "https://github.com/cloudacademy/sagemaker-flight-delays.git"
             NotebookInstanceName: ca-lab-notebook
             VolumeSizeInGB: 5
     ExecutionRole:
