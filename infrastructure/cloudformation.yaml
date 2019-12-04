@@ -1,0 +1,35 @@
+Description: "SageMaker notebook to predict flight delays"
+Resources:
+    BasicNotebookInstance:
+        Type: "AWS::SageMaker::NotebookInstance"
+        Properties:
+            InstanceType: "ml.t2.medium"
+            RoleArn: !GetAtt ExecutionRole.Arn
+            DefaultCodeRepository:
+                - https://github.com/cloudacademy/sagemaker-flight-delays.git
+            NotebookInstanceName: ca-lab-notebook
+            VolumeSizeInGB: 5
+    ExecutionRole:
+        Type: "AWS::IAM::Role"
+        Properties:
+            AssumeRolePolicyDocument:
+                Version: "2012-10-17"
+                Statement:
+                    - Effect: "Allow"
+                      Principal:
+                          Service:
+                              - "sagemaker.amazonaws.com"
+                      Action:
+                          - "sts:AssumeRole"
+            Path: "/"
+            Policies:
+                - PolicyName: "root"
+                  PolicyDocument:
+                      Version: "2012-10-17"
+                      Statement:
+                          - Effect: "Allow"
+                            Action: "*"
+                            Resource: "*"
+Outputs:
+    BasicNotebookInstanceId:
+        Value: !Ref BasicNotebookInstance
