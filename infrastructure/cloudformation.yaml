@@ -46,7 +46,7 @@ Resources:
                             - "elasticfilesystem:DeleteFileSystem"
                             - "elasticfilesystem:DeleteMountTarget"
                             Resource: "*"
-                            Condition":
+                            Condition:
                                 StringLike: 
                                     aws:ResourceTag/ManagedByAmazonSageMakerResource: "*"
                           - Effect: "Allow"
@@ -80,7 +80,7 @@ Resources:
                                 - "ec2:RevokeSecurityGroupEgress"
                                 - "ec2:RevokeSecurityGroupIngress"
                             Resource: "*"
-                            Condition":
+                            Condition:
                                 StringLike: 
                                     ec2:ResourceTag/ManagedByAmazonSageMakerResource: "*"
                           - Effect: "Allow"
