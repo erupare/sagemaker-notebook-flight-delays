@@ -19,8 +19,13 @@ Use Amazon SageMaker to forecast US flight delays using SageMaker's built-in lin
     aws iam create-login-profile --user-name $user --password $password
     aws iam add-user-to-group --group-name $group --user-name $user
 
-    aws cloudformation create-stack --stack-name "cloudacademylabs" --template-body file://.//infrastructure/cloudformation.yaml --on-failure "DO_NOTHING"
-    aws cloudformation describe-stacks --stack-name "cloudacademylabs"
+    aws cloudformation create-stack --stack-name "cloudacademylabs" --template-body file://.//infrastructure/cloudformation.yaml --capabilities "CAPABILITY_IAM" --on-failure "DO_NOTHING"
+    do {
+        Start-Sleep 5
+        $response=aws cloudformation describe-stacks --stack-name "cloudacademylabs"
+    } while ($response.Contains("CREATE_IN_PROGRESS"))
+    $response
+    aws cloudformation describe-stack-resources --stack-name "cloudacademylabs"
     ```
 
 ## Tearing Down
