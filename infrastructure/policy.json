@@ -11,7 +11,7 @@
                 "sagemaker:Search"
             ],
             "Resource": "*"
-        },,
+        },
         {
             "Effect": "Allow",
             "Action": [
