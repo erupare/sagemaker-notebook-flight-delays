@@ -23,7 +23,7 @@ Use Amazon SageMaker to forecast US flight delays using SageMaker's built-in lin
     do {
         Start-Sleep 5
         $response=aws cloudformation describe-stacks --stack-name "cloudacademylabs"
-    } while ($response.Contains("CREATE_IN_PROGRESS"))
+    } while ("$response".Contains("CREATE_IN_PROGRESS"))
     $response
     aws cloudformation describe-stack-resources --stack-name "cloudacademylabs"
     ```
