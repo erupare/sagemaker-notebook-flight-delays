@@ -36,6 +36,11 @@ Use Amazon SageMaker to forecast US flight delays using SageMaker's built-in lin
 
     ```sh
     aws cloudformation delete-stack --stack-name "cloudacademylabs"
+    do {
+        Start-Sleep 5
+        $response=aws cloudformation describe-stacks --stack-name "cloudacademylabs"
+    } while ("$response".Contains("DELETE_IN_PROGRESS"))
+    $response
 
     aws iam remove-user-from-group --group-name $group --user-name $user
     aws iam delete-login-profile --user-name $user
