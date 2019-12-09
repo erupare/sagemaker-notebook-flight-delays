@@ -8,7 +8,8 @@
                 "sagemaker:List*",
                 "sagemaker:BatchGetMetrics",
                 "sagemaker:GetSearchSuggestions",
-                "sagemaker:Search"
+                "sagemaker:Search",
+                "sagemaker:CreatePresignedNotebookInstanceUrl"
             ],
             "Resource": "*"
         },
