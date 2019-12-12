@@ -38,7 +38,9 @@ Resources:
                                 - "sagemaker:Describe*"
                                 - "sagemaker:List*"
                                 - "sagemaker:CreatePresignedDomainUrl"
+                                - "sagemaker:CreateEndpoint"
                                 - "sagemaker:*App"
+                                - "sagemaker:CreateModel"
                             Resource: "*"
                           - Effect: "Allow"
                             Action:
@@ -49,6 +51,28 @@ Resources:
                             Condition:
                                 StringLike: 
                                     aws:ResourceTag/ManagedByAmazonSageMakerResource: "*"
+                          - Effect: "Allow"
+                            Action:
+                                - "iam:PassRole"
+                            Resource: "*"
+                            Condition:
+                                StringEquals: 
+                                    iam:PassedToService: "sagemaker.amazonaws.com"
+                          - Effect: "Allow"
+                            Action:
+                                - "sagemaker:CreateTrainingJob"
+                                - "sagemaker:CreateEndpointConfig"
+                            Resource: "*"
+                            Condition:
+                                ForAllValues:StringLike: 
+                                    sagemaker:InstanceTypes: "ml.m4.xlarge"
+                          - Effect: "Allow"
+                            Action:
+                                - "sagemaker:CreateEndpointConfig"
+                            Resource: "*"
+                            Condition:
+                                ForAllValues:StringLike: 
+                                    sagemaker:InstanceTypes: "ml.t2.medium"
                           - Effect: "Allow"
                             Action:
                                 - "elasticfilesystem:DescribeFileSystems"
@@ -87,6 +111,14 @@ Resources:
                             Action:
                                 - "sagemaker:CreateUserProfile"
                                 - "sagemaker:DescribeUserProfile"
+                            Resource: "*"
+                          - Effect: "Allow"
+                            Action:
+                                - "logs:Describe*"
+                                - "logs:Get*"
+                                - "logs:CreateLogGroup"
+                                - "logs:CreateLogStream"
+                                - "logs:PutLogEvents"
                             Resource: "*"
     SageMakerData:
         Type: AWS::S3::Bucket
