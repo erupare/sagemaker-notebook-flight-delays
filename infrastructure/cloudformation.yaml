@@ -41,6 +41,7 @@ Resources:
                                 - "sagemaker:CreateEndpoint"
                                 - "sagemaker:*App"
                                 - "sagemaker:CreateModel"
+                                - "sagemaker:InvokeEndpoint"
                             Resource: "*"
                           - Effect: "Allow"
                             Action:
